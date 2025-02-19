@@ -1,48 +1,41 @@
 import { Canvas } from "@react-three/fiber";
 import React, { Suspense } from "react";
+import { Mesh } from 'three';
 import Loader from "../components/Loader";
-import { AmbientLight, DirectionalLight, HemisphereLight, PointLight } from "three";
-import { OrbitControls, SpotLight } from "@react-three/drei";
-import Island from "../models/island";
-import Sky from "../models/sky";
 import Prabhash from "../models/prabhash";
+import NightSky from "../components/nightSky";
+import Astronomy from "../models/astronomy";
+import HeroSection from "../components/HeroSection";
 
-
-
-const Home =() => {
-  const adjustIslandForScreenSize = () => {
-    let screenScale = null;
-    let screenPostion = [0, -6.5, -43];
-    let rotation = [0.1, 4.7, 0];
-
-    if(window.innerWidth < 768){
-      screenScale = [0.9, 0.9, 0.9];
-    }else {
-      screenScale = [1, 1, 1];
-    }
-    return [screenScale, screenPostion, rotation]
-  }
-
-  const [islandScale, islandPostion, islandRotation] = adjustIslandForScreenSize();
-
+const Home = () => {
   return (
     <section className="w-full h-screen relative">
-<Canvas className="w-full h-screen bg-transparent"
-      camera={{ position: [0,1,3] , fov: 50}}>
-  <Suspense fallback={<Loader />}>
-    <directionalLight intensity={1} position={[1, 1, 1]} />
-    <ambientLight intensity={2} />
-    <pointLight position={[10, 10, 10]} />
-    <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={0.5} />
-
-
-    <Prabhash position={[0, -1, 0]} />
-    
-  </Suspense>
-</Canvas>
-
+      <HeroSection/>
+      <Canvas className="w-full h-screen bg-black" camera={{ position: [0, 1, 3], fov: 50 }}>
+        <Suspense fallback={<Loader />}>
+          <NightSky />
+          
+          
+          <directionalLight intensity={1.0} position={[1, 1, 1]} />  
+          <ambientLight intensity={0.6} />  
+          <spotLight 
+            intensity={2}
+            position={[0, 2, 3]} 
+            angle={Math.PI / 4}
+            penumbra={1}
+            castShadow 
+          />
+          
+          <pointLight 
+            intensity={0.8} 
+            position={[10, 10, 10]} 
+          />
+          <Prabhash position={[1, -0.7, 0.3]} scale={[1, 1, 1]} rotation={[Math.PI / 5, 0, 0.1]} />
+          <Astronomy position={[1, -1, 0]} scale={[20, 20, 20]} />
+        </Suspense>
+      </Canvas>
     </section>
   );
-}
+};
 
 export default Home;
