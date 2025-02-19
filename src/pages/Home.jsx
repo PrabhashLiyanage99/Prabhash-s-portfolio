@@ -37,7 +37,7 @@ const Home =() => {
 
 
     <Prabhash position={[0, -1, 0]} />
-    <OrbitControls enableZoom={true} enableRotate={true}/>
+    
   </Suspense>
 </Canvas>
 
