@@ -242,6 +242,12 @@ body:has(.card[data-color="green"]:hover) {
   transform: translateZ(0);
 }
 
+@media (max-width: 768px) {
+  .canvas {
+    height: 100vh;  /* Ensure it takes full height on smaller screens */
+  }
+}
+
 @keyframes mulShdSpin {
   0%,
   100% {

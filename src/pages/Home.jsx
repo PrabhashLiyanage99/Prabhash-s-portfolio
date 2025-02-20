@@ -8,8 +8,7 @@ import HeroSection from "../components/HeroSection";
 import Moon from "../models/moon";
 import Earth from "../models/earth";
 import { useSpring, a } from "@react-spring/three";
-import About from "../components/About";
-import AboutPage from "./About";
+import About from './AboutPage';
 
 const Home = () => {
   const lightRef = useRef(); // ✅ Declare the reference for the light
@@ -38,8 +37,9 @@ const Home = () => {
           <Moon scale={[0.5, 0.5, 0.5]} position={[-1, -0.1, 0]} />
         </Suspense>
       </Canvas>
-      <AboutPage/>
+      <About/>
     </section>
+
   );
 };
 

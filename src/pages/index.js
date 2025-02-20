@@ -1,5 +1,5 @@
 import Home from "./Home";
-import About from "./About";
+import About from "./AboutPage";
 import Contact from "./Content";
 import Projects from "./project";
 
