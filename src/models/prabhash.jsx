@@ -17,6 +17,10 @@ const Prabhash = (props) => {
 
   // Get the camera from the Three.js context
   const { camera } = useThree()
+    useFrame(({ clock }) => {
+      const time = clock.getElapsedTime();
+      group.current.position.y = Math.sin(time * 1) * 0.07-0.7; // Adjust the amplitude and speed as needed
+    });
 
   useEffect(() => {
     if (actions["Waving"]) {
